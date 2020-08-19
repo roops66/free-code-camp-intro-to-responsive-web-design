@@ -1,0 +1,108 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16600\viewh19580\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 CSS Units:\
+Absolute: px\
+Percentage: mainly used for widths. Relative to their parent (except on height, where it gets weird). Parent width usually 100%.\
+Relative: two types - relative to font-size (em and rem, and others less common) or viewport (browser window - vw,vh, vmin, vmax). \
+\
+Avoid text stretching across the width when too wide. Set max-width on container.\
+\
+em and rem are relative to font-size of other elements.\
+Em relative to their parent's font-size (Note: it's parent's font-size may be relative to it's parent's font-size, so a multiplication effect (compounding factor) can occur and font size get really big).\
+Font-size is inherited property, so if not declared anywhere, it's getting it from the body (or the default, 16px).\
+If body font-size: 10px, and ul font-size: 1.5em = 150% of the parent font size = 15px.\
+\
+Rem = Root Em. Always relative to "root" of our document. Root of HTML page is always the html element. \
+\
+General rule of thumb:\
+Font-size = rem\
+Padding and margin = em\
+Widths = em or %\
+\
+Tutorial used example where .button padding: .5em 1.25em; .btn-big font-size: 1.5rem; .btn-small font-size: .75rem; Padding around the button scaled up and down with the font size of the button cos .button padding not paying attention to the parent, but to the font-size of its own element. \
+Use of em's on the font-size, it will look at the parent. Use of em's on any other property - padding, margins, widths, no longer looks at parent, but em is relative to the font-size of this element. Means it won't scale/compound out of control. \
+If had .button padding: .5rem, it's same as setting a set px and it would scale funny as button font-size gets bigger\
+\
+h1 \{ font-size: 24px; margin-bottom: 1em (=24px); margin-bottom: 2em (=48px);\} Em is relative to font-size of its element. \
+If above had font-size: 3rem; even if we didn't know what size 3em equates to, we can still margin-bottom: .5em and this will make it half of the font size. Or margin-bottom: 2em will make it twice the font-size, i.e. relative to that element itself. \
+Changing font-size (for different screens) will make the margin change (to scale) automatically. \
+Em and % work similarly, hence him choosing not to use % with font-size (would run into scale/compound issue). \
+\
+\
+Remember to add a:hover and a:focus styles.\
+\
+Flexbox basics\
+\
+Elements normally display:block (div, header, footer, main, etc. h1 -> h6, p) or display:in-line (a, strong, em, span) as default from browser.\
+Display: flex on parent element changes this behaviour (of all of its direct children). \
+Child elements will shrink to fit the content on the horizontal (main) axis. \
+\
+He removed 5% from the widths of .col-1, .col-2, .col-3 cos otherwise they took up 100& of the width (of the container) and justify-content: space-between didn't have space to put between some of the columns. Not 100% perfect - columns with black bg have more space than needed at the bottom (between the text and edge of column).\
+\
+\
+Media queries: let us add new styles that target only specific conditions.\
+@media media-type and (media-condition) \{ ... \}\
+media type - target different types of media:\
+@media screen \{...\}\
+@media print \{...\}\
+@media speech \{...\}\
+\
+media condition - target specific conditions within that media type:\
+Widths: @media (min-width: 600px) \{...\}\
+Orientation: @media (orientation: landscape) \{...\}\
+Specific features: @media (hover) \{...\}\
+\
+\
+Flex-direction: change to column changes main-axis from horizontal to vertical.\
+justify-content: now works vertically.\
+align-items: now works horizontally. \
+\
+\
+Nav styling\
+\
+\
+Rest of the project\
+\
+Works on markup for desktop designs first as they're more complicated, reveals the structure of the website when all the pieces are in play. Works on CSS for small screens first (mobile first). \
+\
+https://xd.adobe.com/spec/75d448ea-569a-4b7e-721b-9bbd3b2b97b9-03e5/screen/c27ed1eb-3c57-41a8-acb2-90ecaf25f93b/specs/\
+\
+The HTML for the Feature is in different order to elements rendered to the page (visual order) to help screen readers make sense of what's on the page. Then uses flex box (flex-order) to render the HTML to the page as required. \
+He avoids descendent and compound selectors so his CSS is easier to read and understand. Means more verbose class names. (See comments in styles-nav.css).\
+He starts with typography first. Tries to group together the common/generic attributes (global styles) first, e.g. h1, h2, h3 all using same certain attributes. I think you can then use a class to add anything different, the h2 class="article-title". \
+Puts general styled elements first, then moves onto the style classes. \
+'Bolder' jumps to the next font weight, e.g. 300 to 400. 'Bold' jumps straight to 700. Chrome usually jumps to bold/700. He explicitly specified this in style for <strong> cos some browsers go to bolder.  \
+\
+Created .container-flex (started with .container-nav, but realised we're re-using those styles so renamed it something more generic) and kept .container as we might have a page where we don't want components/elements inside it to be flex items. Could've called it .flex, d-flex (Atomic CSS)\
+\
+Applying display: block globally to img elements avoids bottom spacing issue when img is in-line.\
+\
+\
+Thinking mobile first\
+See styles-nav.css file for comments on how adapted code, e.g. changed from max-width to min-width media queries. Can't remember how he explained it, but that means we have less to code to amend as we cater for different screen sizes. Easier to do small screen stuff and then adapt for bigger screens. \
+\
+\
+Styling the featured article\
+Tends to only give a margin-bottom, but didn't want to give the img a margin-bottom, so gave .article-info a margin-top and bottom. \
+Go bigger with margins and then reduce. \
+\
+\
+Changing visual order with Flexbox\
+The parent of elements being ordered needs the flex property.\
+1, 2, 3 = -3, -2, -1 (I think) = 30, 40, 50.\
+\
+Margins of direct children don't collapse in Flexbox.\
+\
+Tend/advised to avoid negative margins. That doesn't mean they're not used. \
+Used negative margin to move h2 .article-title up to line up with p .article-info (date) when me move over to the right on screens bigger than 500px. \
+Can cause issues though, e.g. a longer article-title would overwrite onto the article-info\
+Used 'object-fit' prop to use the same image for both small and large screen. Not perfect. \
+\
+Breakpoints are layout specific, not device specific. He gave the .aside a min-width and margin-left to avoid adding another breakpoint (cos might then have to change even more things). \
+\
+Read code comments too. }
