@@ -1,6 +1,8 @@
 Link to tutorial:
 https://www.youtube.com/watch?v=srvUrASNj0s&list=PLQi6tJ3_ekDG63TL4ZDSHxoNTPt3QykWG&index=7&t=0s
 
+XD design doc https://xd.adobe.com/spec/75d448ea-569a-4b7e-721b-9bbd3b2b97b9-03e5/screen/324b9092-7e23-4f88-80a9-d3949a790afd/
+
 This tutorial teaches you to build responsive websites from scratch. It’s a part of The Responsive Web Design Bootcamp at Scrimba: https://scrimba.com/g/gresponsive
 
 However, this 4-hour tutorial stands fully on its own legs. It starts with explaining the core concepts needed to start thinking responsively, and then it takes you through every single step in building a professional-level responsive website.
